@@ -3,9 +3,16 @@ package org.springframework.samples.petclinic.recoveryroom;
 import java.util.List;
 import java.util.Optional;
 
-public interface RecoveryRoomRepository {
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+public interface RecoveryRoomRepository extends CrudRepository<RecoveryRoom, Integer>{
     List<RecoveryRoom> findAll();
-    //List<RecoveryRoomType> findAllRecoveryRoomTypes();
+    
+	@Query("SELECT rrType FROM RecoveryRoomType rrType ORDER BY rrType.name")
+    List<RecoveryRoomType> findAllRecoveryRoomTypes() throws DataAccessException;
+
     Optional<RecoveryRoom> findById(int id);
     RecoveryRoom save(RecoveryRoom p);
     //RecoveryRoomType getRecoveryRoomType(String name);
