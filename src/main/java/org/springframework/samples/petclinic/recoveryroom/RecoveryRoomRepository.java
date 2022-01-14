@@ -15,6 +15,10 @@ public interface RecoveryRoomRepository extends CrudRepository<RecoveryRoom, Int
 
     Optional<RecoveryRoom> findById(int id);
     RecoveryRoom save(RecoveryRoom p);
-    //RecoveryRoomType getRecoveryRoomType(String name);
-    //List<RecoveryRoom> findBySizeMoreThan(double size);
+    
+    @Query("SELECT rrType FROM RecoveryRoomType rrType WHERE rrType.name LIKE ?1")
+    RecoveryRoomType getRecoveryRoomType(String name);
+    
+    @Query("SELECT rr FROM RecoveryRoom rr WHERE rr.size > ?1")
+    List<RecoveryRoom> findBySizeMoreThan(double size);
 }

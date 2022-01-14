@@ -19,20 +19,22 @@ public class RecoveryRoomService {
         return recoveryRoomRepository.findAll();
     }
 
+    
     public List<RecoveryRoomType> getAllRecoveryRoomTypes(){
         return null;
     }
 
     public RecoveryRoomType getRecoveryRoomType(String typeName) {
-        return null;
+        return recoveryRoomRepository.getRecoveryRoomType(typeName);
     }
 
     public List<RecoveryRoom> getRecoveryRoomsBiggerThan(double size) {
-        return null;
+        return recoveryRoomRepository.findBySizeMoreThan(size);
     }
 
     public RecoveryRoom save(RecoveryRoom p) {
-        return null;       
+        
+        return recoveryRoomRepository.save(p);       
     }
 
     
